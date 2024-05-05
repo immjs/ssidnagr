@@ -91,14 +91,11 @@ while tick():
       while GPIO.input(pin_button_feedback):
         pass
 
-      match pending_action:
-        case None:
-          pass
-        case 'next_video':
-          list_player.next()
-        case 'next_playlist':
-          current_media_list += 1
-          list_player.set_media_list(media_lists[current_media_list])
+      if pending_action == 'next_video':
+        list_player.next()
+      elif pending_action == 'next_playlist':
+        current_media_list += 1
+        list_player.set_media_list(media_lists[current_media_list])
 
     else: # keyup event
       pass
